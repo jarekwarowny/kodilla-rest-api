@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
@@ -16,7 +13,8 @@ import javax.persistence.Id;
 public class Task {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "TaskSequence", sequenceName = "TASK_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TaskSequence")
     private Long id;
 
     @Column(name = "name")
