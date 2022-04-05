@@ -5,20 +5,16 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.function.EntityResponse;
-import org.springframework.web.servlet.function.ServerResponse;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/v1/tasks")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class TaskController {
 
     private final DbService service;
@@ -43,10 +39,10 @@ public class TaskController {
     }
 
     @PutMapping
-    public EntityResponse<TaskDto> updateTask(@RequestBody TaskDto taskDto) {
+    public ResponseEntity<TaskDto> updateTask(@RequestBody TaskDto taskDto) {
         Task task = taskMapper.mapToTask(taskDto);
         Task savedTask = service.saveTask(task);
-        return EntityResponse.ok(taskMapper.mapToTaskDto(savedTask));
+        return ResponseEntity.ok(taskMapper.mapToTaskDto(savedTask));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
