@@ -28,8 +28,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	runtimeOnly 'mysql:mysql-connector-java'
-	runtimeOnly 'org.postgresql:postgresql:42.3.3'
+//	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'org.postgresql:postgresql:42.2.24'
 
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 
