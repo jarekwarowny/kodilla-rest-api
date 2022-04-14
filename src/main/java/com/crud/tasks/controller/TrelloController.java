@@ -20,11 +20,14 @@ public class TrelloController {
 
     @GetMapping("boards")
     public void getTrelloBoards() {
-
         List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
         trelloBoards.forEach(trelloBoardDto -> {
-            System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName());
+            System.out.println(trelloBoardDto.getId() + " - " + trelloBoardDto.getName());
+            System.out.println("This board contains lists: ");
+            trelloBoardDto.getLists().forEach(trelloListDto -> {
+                System.out.println(trelloListDto.getName() + " - " + trelloListDto.getId() + " - " + trelloListDto.isClosed());
+            });
         });
     }
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor
@@ -13,8 +14,8 @@ import javax.persistence.*;
 public class Task {
 
     @Id
-    @SequenceGenerator(name = "TaskSequence", sequenceName = "TASK_SEQ", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TaskSequence")
+    @GeneratedValue
+    @NotNull
     private Long id;
 
     @Column(name = "name")
