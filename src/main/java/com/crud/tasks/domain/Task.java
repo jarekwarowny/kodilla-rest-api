@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.crypto.Data;
 
 @Getter
 @NoArgsConstructor
@@ -16,6 +17,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
@@ -23,6 +25,8 @@ public class Task {
 
     @Column(name = "description")
     private String content;
+
+
 }
 
 
