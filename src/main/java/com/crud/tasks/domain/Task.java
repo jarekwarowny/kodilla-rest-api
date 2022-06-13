@@ -25,8 +25,6 @@ public class Task {
 
     @Column(name = "description")
     private String content;
-
-
 }
 
 
