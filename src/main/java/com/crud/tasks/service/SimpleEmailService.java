@@ -28,7 +28,7 @@ public class SimpleEmailService {
     public void send(final Mail mail) {
         log.info("Starting emial preparation...");
         try {
-            SimpleMailMessage mailMessage = createMailMassage(mail);
+            MimeMessagePreparator mailMessage = createMimeMessageForTask(mail);
             javaMailSender.send(mailMessage);
             log.info("Email has been sent.");
         } catch (MailException e) {
@@ -53,5 +53,14 @@ public class SimpleEmailService {
         mailMessage.setText(mail.getMessage());
         Optional.ofNullable(mail.getToCc()).ifPresent(mailMessage::setCc);
         return mailMessage;
+    }
+
+    private MimeMessagePreparator createMimeMessageForTask(final Mail mail) {
+        return mimeMessage -> {
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+            mimeMessageHelper.setTo(mail.getMailTo());
+            mimeMessageHelper.setSubject(mail.getSubject());
+            mimeMessageHelper.setText(mailCreatorService.buildNewEmailFromTask32_3(mail.getMessage()), true);
+        };
     }
 }
